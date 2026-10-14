@@ -1,0 +1,34 @@
+<% content_for :title, "Minha lojinha" %>
+
+<div class="flex flex-wrap items-start justify-between gap-4">
+  <div class="flex items-center gap-4">
+    <%= render "stores/avatar", store: @store, size: "size-16 text-2xl" %>
+    <div>
+      <p class="text-sm text-gray-500">minha lojinha</p>
+      <h1 class="text-3xl font-bold"><%= @store.name %></h1>
+      <p class="text-sm">
+        endereço público: <%= link_to store_url(@store), store_path(@store), class: "link" %>
+      </p>
+    </div>
+  </div>
+  <%= link_to "editar lojinha", edit_my_store_path, class: "btn-secondary" %>
+</div>
+
+<dl class="mt-8 grid gap-4 sm:grid-cols-3">
+  <div class="rounded-xl bg-gray-50 p-4">
+    <dt class="text-sm text-gray-500">produtos à venda</dt>
+    <dd class="text-2xl font-bold">0</dd>
+  </div>
+  <div class="rounded-xl bg-gray-50 p-4">
+    <dt class="text-sm text-gray-500">vendas</dt>
+    <dd class="text-2xl font-bold">0</dd>
+  </div>
+  <div class="rounded-xl bg-gray-50 p-4">
+    <dt class="text-sm text-gray-500">nota média</dt>
+    <dd class="text-2xl font-bold"><%= @store.rating_average ? number_with_precision(@store.rating_average, precision: 1) : "–" %></dd>
+  </div>
+</dl>
+
+<p class="mt-8 rounded-xl border border-dashed border-gray-300 p-6 text-gray-600">
+  Anunciar produtos chega na próxima etapa. Por enquanto dá para ajustar o nome, o endereço e a bio da lojinha.
+</p>

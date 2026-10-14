@@ -1,0 +1,16 @@
+<% content_for :title, "Marcas" %>
+
+<h1 class="text-3xl font-bold">marcas</h1>
+
+<div class="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+  <% @brands_by_letter.each do |letter, brands| %>
+    <section>
+      <h2 class="text-xl font-bold text-brand-600"><%= letter %></h2>
+      <ul class="mt-2 space-y-1">
+        <% brands.each do |brand| %>
+          <li id="<%= brand.slug %>"><%= brand.name %></li>
+        <% end %>
+      </ul>
+    </section>
+  <% end %>
+</div>

@@ -1,0 +1,42 @@
+<header class="border-b border-gray-200 bg-white">
+  <div class="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3">
+    <%= link_to root_path, class: "shrink-0 text-2xl font-extrabold tracking-tight text-brand-600" do %>
+      <%= t("app.name") %>
+    <% end %>
+
+    <%= form_with url: search_path, method: :get, class: "hidden flex-1 sm:block", role: "search" do |form| %>
+      <%= form.search_field :q, value: params[:q], placeholder: "busque por peça, marca ou lojinha",
+            "aria-label": "Buscar", class: "w-full rounded-full border border-gray-300 bg-gray-50 px-4 py-2 text-sm focus:border-brand-500 focus:outline-2 focus:outline-brand-500" %>
+    <% end %>
+
+    <nav class="ml-auto flex items-center gap-3 text-sm font-medium">
+      <% if authenticated? %>
+        <%= link_to "minha lojinha", my_store_path, class: "hover:text-brand-700" %>
+        <%= button_to "sair", sign_out_path, method: :delete, class: "text-gray-500 hover:text-gray-800 cursor-pointer" %>
+      <% else %>
+        <%= link_to "entrar", new_session_path, class: "hover:text-brand-700" %>
+        <%= link_to "criar conta", new_registration_path, class: "btn-primary !py-1.5 !px-4 text-sm" %>
+      <% end %>
+    </nav>
+  </div>
+
+  <nav aria-label="Departamentos" class="border-t border-gray-100">
+    <ul class="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-2 text-sm sm:overflow-visible">
+      <% departments.each do |department| %>
+        <li class="group relative shrink-0">
+          <%= link_to department.name.downcase, department_path(department.slug),
+                class: "block px-3 py-2.5 text-gray-700 hover:text-brand-700 #{'font-semibold text-brand-700' if params[:department_slug] == department.slug}" %>
+          <% if department.children.any? %>
+            <div class="invisible absolute left-0 top-full z-20 min-w-48 rounded-b-lg border border-gray-200 bg-white py-2 opacity-0 shadow-lg transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+              <% department.children.each do |category| %>
+                <%= link_to category.name.downcase, department_path(department.slug, anchor: category.slug),
+                      class: "block px-4 py-1.5 text-gray-600 hover:bg-brand-50 hover:text-brand-700" %>
+              <% end %>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+      <li class="shrink-0"><%= link_to "marcas", brands_path, class: "block px-3 py-2.5 text-gray-700 hover:text-brand-700" %></li>
+    </ul>
+  </nav>
+</header>

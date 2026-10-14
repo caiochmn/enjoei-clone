@@ -1,0 +1,8 @@
+<% content_for :title, "Busca" %>
+
+<h1 class="text-3xl font-bold">
+  <%= @query.present? ? "resultados para “#{@query}”" : "busca" %>
+</h1>
+<p class="mt-6 rounded-xl border border-dashed border-gray-300 p-6 text-center text-gray-500">
+  A busca com filtros chega junto com o catálogo de produtos.
+</p>

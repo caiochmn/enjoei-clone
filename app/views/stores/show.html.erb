@@ -1,0 +1,30 @@
+<% content_for :title, @store.name %>
+<% content_for :description, @store.bio.presence || "Lojinha #{@store.name}" %>
+
+<section class="flex flex-col gap-6 sm:flex-row sm:items-center">
+  <%= render "stores/avatar", store: @store, size: "size-24 text-4xl" %>
+  <div class="flex-1">
+    <h1 class="text-3xl font-bold"><%= @store.name %></h1>
+    <p class="text-sm text-gray-500">
+      no ar desde <%= l(@store.created_at.to_date, format: :long) %>
+      <% if @store.rating_average %>
+        · nota <%= number_with_precision(@store.rating_average, precision: 1) %> de 5
+      <% else %>
+        · ainda sem avaliações
+      <% end %>
+    </p>
+    <% if @store.bio.present? %>
+      <p class="mt-3 max-w-2xl whitespace-pre-line text-gray-700"><%= @store.bio %></p>
+    <% end %>
+  </div>
+  <% if authenticated? && Current.user == @store.user %>
+    <%= link_to "editar lojinha", edit_my_store_path, class: "btn-secondary" %>
+  <% end %>
+</section>
+
+<section class="mt-10">
+  <h2 class="text-xl font-semibold">Produtos</h2>
+  <div class="mt-4 rounded-xl border border-dashed border-gray-300 p-10 text-center text-gray-500">
+    Esta lojinha ainda não tem produtos à venda.
+  </div>
+</section>

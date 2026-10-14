@@ -1,0 +1,35 @@
+pt-BR:
+  app:
+    name: "desapega"
+    tagline: "marketplace de peças usadas feito para estudo"
+
+  activerecord:
+    models:
+      user: "Usuário"
+      store: "Lojinha"
+      category: "Categoria"
+      brand: "Marca"
+    attributes:
+      user:
+        name: "Nome"
+        email_address: "Email"
+        password: "Senha"
+        password_confirmation: "Confirme a senha"
+      store:
+        name: "Nome da lojinha"
+        slug: "Endereço"
+        bio: "Sobre a lojinha"
+        rating_average: "Nota média"
+      category:
+        name: "Nome"
+        slug: "Slug"
+        parent: "Categoria pai"
+      brand:
+        name: "Nome"
+    errors:
+      models:
+        store:
+          attributes:
+            slug:
+              invalid_slug: "só pode ter letras minúsculas, números e hífens"
+              reserved: "não está disponível"
