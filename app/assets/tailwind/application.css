@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #ecfdf7;
+  --color-brand-100: #d1faec;
+  --color-brand-500: #12a37a;
+  --color-brand-600: #0b8766;
+  --color-brand-700: #0a6c53;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer components {
+  .input {
+    @apply block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 shadow-sm focus:border-brand-500 focus:outline-2 focus:outline-brand-500;
+  }
+  .label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-brand-600 px-5 py-2.5 font-semibold text-white hover:bg-brand-700 cursor-pointer;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-5 py-2.5 font-semibold text-gray-800 hover:bg-gray-50 cursor-pointer;
+  }
+  .link {
+    @apply text-brand-700 underline hover:no-underline;
+  }
+}

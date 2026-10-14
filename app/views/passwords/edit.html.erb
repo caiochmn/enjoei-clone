@@ -1,0 +1,19 @@
+<% content_for :title, "Nova senha" %>
+
+<div class="mx-auto max-w-md">
+  <h1 class="text-3xl font-bold">Crie uma nova senha</h1>
+
+  <%= form_with url: password_path(params[:token]), method: :put, class: "mt-6 space-y-5" do |form| %>
+    <div>
+      <%= form.label :password, "Nova senha", class: "label" %>
+      <%= form.password_field :password, required: true, autocomplete: "new-password", maxlength: 72, class: "input" %>
+    </div>
+
+    <div>
+      <%= form.label :password_confirmation, "Repita a nova senha", class: "label" %>
+      <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", maxlength: 72, class: "input" %>
+    </div>
+
+    <%= form.submit "Salvar", class: "btn-primary" %>
+  <% end %>
+</div>

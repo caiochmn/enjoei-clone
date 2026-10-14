@@ -1,0 +1,7 @@
+<%= link_to store_path(store), class: "flex items-center gap-3 rounded-xl border border-gray-200 p-4 hover:border-brand-500 hover:shadow-sm" do %>
+  <%= render "stores/avatar", store: store %>
+  <div class="min-w-0">
+    <p class="truncate font-semibold"><%= store.name %></p>
+    <p class="truncate text-sm text-gray-500">/<%= store.slug %></p>
+  </div>
+<% end %>

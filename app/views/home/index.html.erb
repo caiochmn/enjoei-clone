@@ -1,0 +1,53 @@
+<section class="rounded-3xl bg-brand-50 px-6 py-12 sm:px-12">
+  <h1 class="max-w-xl text-4xl font-extrabold leading-tight sm:text-5xl">
+    compre e venda peças usadas com quem também desapega
+  </h1>
+  <p class="mt-4 max-w-lg text-lg text-gray-700">
+    Cada pessoa tem a sua lojinha. Monte a sua, anuncie o que não usa mais e encontre achados de outras lojinhas.
+  </p>
+  <div class="mt-6 flex flex-wrap gap-3">
+    <% if authenticated? %>
+      <%= link_to "ir para minha lojinha", my_store_path, class: "btn-primary" %>
+    <% else %>
+      <%= link_to "criar minha lojinha", new_registration_path, class: "btn-primary" %>
+      <%= link_to "já tenho conta", new_session_path, class: "btn-secondary" %>
+    <% end %>
+  </div>
+</section>
+
+<section class="mt-12">
+  <h2 class="text-2xl font-bold">departamentos</h2>
+  <ul class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+    <% departments.each do |department| %>
+      <li>
+        <%= link_to department_path(department.slug), class: "block rounded-xl border border-gray-200 p-4 hover:border-brand-500 hover:shadow-sm" do %>
+          <span class="font-semibold"><%= department.name.downcase %></span>
+          <span class="mt-1 block text-sm text-gray-500"><%= pluralize(department.children.size, "categoria", plural: "categorias") %></span>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</section>
+
+<% if @stores.any? %>
+  <section class="mt-12">
+    <h2 class="text-2xl font-bold">lojinhas novas</h2>
+    <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <%= render partial: "stores/card", collection: @stores, as: :store %>
+    </div>
+  </section>
+<% end %>
+
+<% if @brands.any? %>
+  <section class="mt-12">
+    <div class="flex items-baseline justify-between">
+      <h2 class="text-2xl font-bold">marcas</h2>
+      <%= link_to "ver todas", brands_path, class: "link text-sm" %>
+    </div>
+    <ul class="mt-4 flex flex-wrap gap-2">
+      <% @brands.each do |brand| %>
+        <li class="rounded-full border border-gray-200 px-4 py-1.5 text-sm"><%= brand.name %></li>
+      <% end %>
+    </ul>
+  </section>
+<% end %>

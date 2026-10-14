@@ -1,0 +1,15 @@
+<% content_for :title, "Esqueci minha senha" %>
+
+<div class="mx-auto max-w-md">
+  <h1 class="text-3xl font-bold">Esqueceu a senha?</h1>
+  <p class="mt-1 text-gray-600">Informe seu email e mandamos um link para criar uma nova.</p>
+
+  <%= form_with url: passwords_path, class: "mt-6 space-y-5" do |form| %>
+    <div>
+      <%= form.label :email_address, "Email", class: "label" %>
+      <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", value: params[:email_address], class: "input" %>
+    </div>
+
+    <%= form.submit "Enviar link", class: "btn-primary" %>
+  <% end %>
+</div>

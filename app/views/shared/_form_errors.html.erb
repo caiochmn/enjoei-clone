@@ -1,0 +1,10 @@
+<% if record.errors.any? %>
+  <div id="error_explanation" class="mb-6 rounded-lg bg-red-50 px-4 py-3 text-red-700">
+    <p class="font-semibold">Confira os campos abaixo:</p>
+    <ul class="mt-1 list-disc pl-5 text-sm">
+      <% record.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

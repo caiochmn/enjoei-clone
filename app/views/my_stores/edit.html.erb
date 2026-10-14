@@ -1,0 +1,33 @@
+<% content_for :title, "Editar lojinha" %>
+
+<div class="mx-auto max-w-lg">
+  <h1 class="text-3xl font-bold">Editar lojinha</h1>
+
+  <%= form_with model: @store, url: my_store_path, method: :patch, class: "mt-6 space-y-5" do |form| %>
+    <%= render "shared/form_errors", record: @store %>
+
+    <div>
+      <%= form.label :name, class: "label" %>
+      <%= form.text_field :name, required: true, maxlength: 60, class: "input" %>
+    </div>
+
+    <div>
+      <%= form.label :slug, class: "label" %>
+      <div class="flex items-center gap-1">
+        <span class="text-gray-500"><%= root_url.delete_suffix("/") %>/</span>
+        <%= form.text_field :slug, required: true, maxlength: 40, pattern: "[a-z0-9]+(-[a-z0-9]+)*", class: "input" %>
+      </div>
+      <p class="mt-1 text-xs text-gray-500">Letras minúsculas, números e hífens.</p>
+    </div>
+
+    <div>
+      <%= form.label :bio, class: "label" %>
+      <%= form.text_area :bio, rows: 4, maxlength: 500, class: "input" %>
+    </div>
+
+    <div class="flex gap-3">
+      <%= form.submit "Salvar", class: "btn-primary" %>
+      <%= link_to "Cancelar", my_store_path, class: "btn-secondary" %>
+    </div>
+  <% end %>
+</div>

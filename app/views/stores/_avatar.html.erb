@@ -1,0 +1,4 @@
+<%# Avatar provisório com a inicial da lojinha; fotos chegam com o Active Storage na etapa 2. %>
+<span class="inline-flex <%= local_assigns.fetch(:size, "size-12 text-lg") %> shrink-0 items-center justify-center rounded-full bg-brand-100 font-bold text-brand-700" aria-hidden="true">
+  <%= store.name.first.upcase %>
+</span>

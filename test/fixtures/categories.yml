@@ -1,0 +1,27 @@
+feminino:
+  name: Feminino
+  slug: feminino
+  position: 0
+
+feminino_roupas:
+  name: Roupas
+  slug: roupas
+  parent: feminino
+  position: 0
+
+feminino_vestidos:
+  name: Vestidos
+  slug: vestidos
+  parent: feminino_roupas
+  position: 0
+
+masculino:
+  name: Masculino
+  slug: masculino
+  position: 1
+
+masculino_roupas:
+  name: Roupas
+  slug: roupas
+  parent: masculino
+  position: 0
